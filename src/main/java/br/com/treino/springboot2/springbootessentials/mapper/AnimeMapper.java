@@ -4,7 +4,7 @@ import br.com.treino.springboot2.springbootessentials.domain.Anime;
 import br.com.treino.springboot2.springbootessentials.request.AnimePostRequestBody;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component()
 public  class AnimeMapper {
 
     //Esse método recebe um objeto animePostRequestBody, faz a conversão do objeto para Anime e retorna o anime;
