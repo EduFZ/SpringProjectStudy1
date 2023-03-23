@@ -47,7 +47,7 @@ public class AnimeService {
     public Anime save(AnimePostRequestBody animePostRequestBody) throws ExceptionMessage {
         if (animePostRequestBody.getName().equalsIgnoreCase("naiara")){
             throw new ExceptionMessage("O nome não pode ser 'naiara'");
-        } else if (repeat.repeatNameValidation(animePostRequestBody.getName()) == true){
+        } else if (repeat.repeatNameValidation(animePostRequestBody.getName())){
             throw new ExceptionMessage("O nome não pode ser repetido");
         } else {
             return animeRepository.save(animeMapper.toAnime(animePostRequestBody));
