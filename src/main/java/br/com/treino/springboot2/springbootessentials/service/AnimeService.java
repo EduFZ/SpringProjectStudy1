@@ -5,6 +5,7 @@ import br.com.treino.springboot2.springbootessentials.exception.ExceptionMessage
 import br.com.treino.springboot2.springbootessentials.mapper.AnimeMapper;
 import br.com.treino.springboot2.springbootessentials.repository.AnimeRepository;
 import br.com.treino.springboot2.springbootessentials.request.AnimePostRequestBody;
+import br.com.treino.springboot2.springbootessentials.validation.NaYValidation;
 import br.com.treino.springboot2.springbootessentials.validation.RepeatNameValidation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,9 @@ public class AnimeService {
     @Autowired
     RepeatNameValidation repeat;
 
+    @Autowired
+    NaYValidation naYValidation;
+
     public Page<Anime> listAll(Pageable pageable){
         return animeRepository.findAll(pageable);
     }
@@ -45,19 +49,12 @@ public class AnimeService {
 
     @Transactional
     public Anime save(AnimePostRequestBody animePostRequestBody) throws ExceptionMessage {
-        if (animePostRequestBody.getName().equalsIgnoreCase("naiara")){
-            throw new ExceptionMessage("O nome não pode ser 'naiara'");
+        if (naYValidation.naYValidation(animePostRequestBody.getName())){
+            throw new ExceptionMessage("O nome 'naiara' não pode ser com 'y'");
         } else if (repeat.repeatNameValidation(animePostRequestBody.getName())){
             throw new ExceptionMessage("O nome não pode ser repetido");
         } else {
             return animeRepository.save(animeMapper.toAnime(animePostRequestBody));
         }
-
-
     }
 }
-
-
-
-//Criar uma validação para impedir que "naiara" com "y" seja criada;
-//Criar um package validation;
