@@ -57,4 +57,8 @@ public class AnimeService {
             return animeRepository.save(animeMapper.toAnime(animePostRequestBody));
         }
     }
+
+    public void delete(long id) throws ExceptionMessage {
+        animeRepository.delete(findByIdOrThrowBadRequestException(id));
+    }
 }

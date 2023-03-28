@@ -4,7 +4,6 @@ import br.com.treino.springboot2.springbootessentials.domain.Anime;
 import br.com.treino.springboot2.springbootessentials.exception.ExceptionMessage;
 import br.com.treino.springboot2.springbootessentials.request.AnimePostRequestBody;
 import br.com.treino.springboot2.springbootessentials.service.AnimeService;
-import br.com.treino.springboot2.springbootessentials.validation.RepeatNameValidation;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
@@ -45,6 +44,12 @@ public class AnimeController {
     @PostMapping("/save")
     public ResponseEntity<Anime> save(@RequestBody @Valid AnimePostRequestBody animePostRequestBody) throws ExceptionMessage {
         return new ResponseEntity<>(animeService.save(animePostRequestBody), HttpStatus.CREATED);
+    }
+
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable long id) throws ExceptionMessage {
+        animeService.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 }
