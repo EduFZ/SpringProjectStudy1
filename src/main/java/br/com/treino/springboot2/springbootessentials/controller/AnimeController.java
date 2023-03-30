@@ -3,6 +3,7 @@ package br.com.treino.springboot2.springbootessentials.controller;
 import br.com.treino.springboot2.springbootessentials.domain.Anime;
 import br.com.treino.springboot2.springbootessentials.exception.ExceptionMessage;
 import br.com.treino.springboot2.springbootessentials.request.AnimePostRequestBody;
+import br.com.treino.springboot2.springbootessentials.request.AnimePutRequestBody;
 import br.com.treino.springboot2.springbootessentials.service.AnimeService;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -50,6 +51,12 @@ public class AnimeController {
     public ResponseEntity<Void> delete(@PathVariable long id) throws ExceptionMessage {
         animeService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    //replace
+    @PutMapping("/replace/{id}")
+    public ResponseEntity<Anime> replace(@PathVariable Long id, @RequestBody AnimePutRequestBody animePutRequestBody) throws ExceptionMessage {
+        return new ResponseEntity<>(animeService.replace(id, animePutRequestBody), HttpStatus.CREATED);
     }
 
 }

@@ -5,6 +5,7 @@ import br.com.treino.springboot2.springbootessentials.exception.ExceptionMessage
 import br.com.treino.springboot2.springbootessentials.mapper.AnimeMapper;
 import br.com.treino.springboot2.springbootessentials.repository.AnimeRepository;
 import br.com.treino.springboot2.springbootessentials.request.AnimePostRequestBody;
+import br.com.treino.springboot2.springbootessentials.request.AnimePutRequestBody;
 import br.com.treino.springboot2.springbootessentials.validation.NaYValidation;
 import br.com.treino.springboot2.springbootessentials.validation.RepeatNameValidation;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Repository
@@ -60,5 +63,15 @@ public class AnimeService {
 
     public void delete(long id) throws ExceptionMessage {
         animeRepository.delete(findByIdOrThrowBadRequestException(id));
+    }
+
+    public void deleteByName(@NotNull @NotEmpty(message = "The anime cannot be empty") Anime name) throws ExceptionMessage{
+        animeRepository.delete(name);
+    }
+
+    public Anime replace(Long id, AnimePutRequestBody animePutRequestBody) throws ExceptionMessage {
+        Anime newAnime = findByIdOrThrowBadRequestException(id);
+        newAnime.setName(animePutRequestBody.getName());
+        return animeRepository.save(newAnime);
     }
 }
