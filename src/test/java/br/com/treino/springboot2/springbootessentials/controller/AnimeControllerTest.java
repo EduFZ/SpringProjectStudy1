@@ -145,17 +145,15 @@ class AnimeControllerTest {
 //    @DisplayName("replace update anime when successful")
 //    void replace_ReturnsAnimes_WhenSuccessful() throws ExceptionMessage {
 //
-//        Long expectedId = AnimeCreator.createValidUpdatedAnime().getId();
+//        Assertions.assertThatCode(() -> animeController.replace(1L, AnimePutRequestBodyCreator.createAnimePutRequestBody()))
+//                .doesNotThrowAnyException();
 //
-//        Anime anime = animeController.findById(1).getBody();
-//
-//        Assertions.assertThatCode(() -> animeController.replace(AnimePutRequestBodyCreator.createAnimePutRequestBody())).doesNotThrowAnyException();
-//
-//        ResponseEntity<Void> entity = animeController.replace(AnimePutRequestBodyCreator.createAnimePutRequestBody()).getBody();
+//        ResponseEntity<Anime> entity = animeController.replace(1L, AnimePutRequestBodyCreator.createAnimePutRequestBody());
 //
 //        Assertions.assertThat(entity).isNotNull();
 //
 //        Assertions.assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
+//
 //    }
 
     @Test
