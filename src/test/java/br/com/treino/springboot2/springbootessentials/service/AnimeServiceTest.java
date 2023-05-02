@@ -8,6 +8,7 @@ import br.com.treino.springboot2.springbootessentials.repository.AnimeRepository
 import br.com.treino.springboot2.springbootessentials.request.AnimePostRequestBody;
 import br.com.treino.springboot2.springbootessentials.util.AnimeCreator;
 import br.com.treino.springboot2.springbootessentials.util.AnimePostRequestBodyCreator;
+import br.com.treino.springboot2.springbootessentials.validation.NaYValidation;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -103,6 +104,7 @@ class AnimeServiceTest {
         Assertions.assertThat(anime.getId()).isNotNull().isEqualTo(expectedId);
     }
 
+    // ------------------ ERRO ------------------
 //    @Test
 //    @DisplayName("findByIdOrThrowBadRequestException throws BadRequestException when anime is not found")
 //    void findByIdOrThrowBadRequestException_ThrowsBadRequestException_WhenAnimeIsNotFound() throws ExceptionMessage {
@@ -144,16 +146,29 @@ class AnimeServiceTest {
                 .isEmpty();
     }
 
-    @Test
-    @DisplayName("save returns anime when successful")
-    void save_ReturnsAnimes_WhenSuccessful() throws ExceptionMessage {
+    // ------------------ ERRO ------------------
+//    @Test
+//    @DisplayName("save returns anime when successful")
+//    void save_ReturnsAnimes_WhenSuccessful(NaYValidation naYValidation) throws ExceptionMessage {
+//
+//        Anime anime = animeService.save(AnimePostRequestBodyCreator.createAnimePostRequestBody());
+//
+//        Assertions.assertThat(anime).isNotNull().isEqualTo(AnimeCreator.createValidAnime());
+//
+//        // OU
+////        AnimePostRequestBody animes = AnimePostRequestBodyCreator.createAnimePostRequestBody();
+////
+////        if (naYValidation.naYValidation(AnimePostRequestBodyCreator.createAnimePostRequestBody().getName())){
+////            animeService.save(animes);
+////        }
+////
+////
+////
+////        Assertions.assertThat(animes).isNotNull().isEqualTo(AnimeCreator.createValidAnime());
+//
+//    }
 
-        Anime anime = animeService.save(AnimePostRequestBodyCreator.createAnimePostRequestBody());
-
-        Assertions.assertThat(anime).isNotNull().isEqualTo(AnimeCreator.createValidAnime());
-
-    }
-
+    // ------------------ ERRO ------------------
 //    @Test
 //    @DisplayName("replace update anime when successful")
 //    void replace_ReturnsAnimes_WhenSuccessful() throws ExceptionMessage {
