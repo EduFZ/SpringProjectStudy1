@@ -27,7 +27,8 @@ import java.util.List;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureTestDatabase
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
-public class AnimeContollerIT {
+public class
+AnimeContollerIT {
     @Autowired
     private TestRestTemplate testRestTemplate;
     @LocalServerPort
